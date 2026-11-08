@@ -12,26 +12,31 @@ import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
 
 function App() {
-  const router = createBrowserRouter([
+  const router = createBrowserRouter(
+    [
+      {
+        path: "/",
+        element: <AppLayout />,
+        children: [
+          {
+            path: "login",
+            element: <Login />,
+          },
+          {
+            path: "admin",
+            element: <AdminDashboard />,
+          },
+          {
+            path: "employee",
+            element: <EmployeeDashboard />,
+          },
+        ],
+      },
+    ],
     {
-      path: "/",
-      element: <AppLayout />,
-      children: [
-        {
-          path: "login",
-          element: <Login />,
-        },
-        {
-          path: "admin",
-          element: <AdminDashboard />,
-        },
-        {
-          path: "employee",
-          element: <EmployeeDashboard />,
-        },
-      ],
+      basename: "/project_management_raktim",
     },
-  ]);
+  );
 
   return <RouterProvider router={router} />;
 }
